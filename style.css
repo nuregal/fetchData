@@ -1,0 +1,54 @@
+* {
+   font-family: 'Lexend', sans-serif;
+}
+
+form {
+    margin: 50px auto; 
+    width: 100px; 
+    display: flex; 
+    justify-content: center;
+
+}
+
+img.loading {
+    display: block;
+    /* width: 50px; */
+    margin: 50px auto;
+}
+
+#div img.loading {
+    /* display: flex; 
+    justify-content: center;
+    align-items: center; */
+
+}
+
+
+
+#btn {
+    background-color:blue;
+    border-radius:1px solid 50%;
+    width:80px;
+
+}
+
+#div {
+    display: flex; 
+    flex-wrap: wrap; 
+    width: 80%; 
+    margin: 0 auto; 
+    justify-content: space-between;
+    align-content: space-between;
+}
+
+.container h1 {
+    text-align: center;
+}
+
+.meal-container {
+    width: 300px;  
+}
+
+.image-container > img {
+    width: 100%; 
+}
