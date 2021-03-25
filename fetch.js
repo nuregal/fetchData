@@ -2,26 +2,27 @@ const btn = document.getElementById("btn");
 const div = document.getElementById("div");
 const form = document.querySelector('form');
 const formInput = document.querySelector("input[type='search']");
+const h1 = document.querySelector('h1');
 
-// btn.addEventListener("click", getData);
+btn.addEventListener("click", getData);
 form.addEventListener('submit',getData)
 
 function getData(e) {
   e.preventDefault()
+
   let loading = true;
     if(loading){ div.innerHTML = `
       <img src='./loading.gif' class="loading"/>
- `
-}
+ `}
+
   const searchValue = formInput.value;
   console.log('searchvalue ', searchValue); 
   setTimeout(()=>{
     fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${searchValue}`)
     .then((resp) => resp.json())
-    .then((resp) => {
-        console.log(resp)
+    .then((data) => {
         loading = false;
-     const meals = resp.meals.map((value) => {
+     const meals = data.meals.map((value) => {
         const {
           idMeal: id,
           strMeal: meal,
@@ -33,7 +34,12 @@ function getData(e) {
       });
       showData(meals)
     })
-    .catch((error) => console.error(error));
+    .catch((error) => {
+      console.log(error)
+      h1.innerHTML = `${searchValue} NOT FOUND`
+      div.innerHTML = ''
+
+    });
   }, 2000)
   
 }

@@ -12,24 +12,7 @@ form {
 
 img.loading {
     display: block;
-    /* width: 50px; */
     margin: 50px auto;
-}
-
-#div img.loading {
-    /* display: flex; 
-    justify-content: center;
-    align-items: center; */
-
-}
-
-
-
-#btn {
-    background-color:blue;
-    border-radius:1px solid 50%;
-    width:80px;
-
 }
 
 #div {
@@ -41,7 +24,7 @@ img.loading {
     align-content: space-between;
 }
 
-.container h1 {
+.con h1 {
     text-align: center;
 }
 
