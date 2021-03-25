@@ -5,24 +5,27 @@ const formInput = document.querySelector("input[type='search']");
 const h1 = document.querySelector('h1');
 
 btn.addEventListener("click", getData);
-form.addEventListener('submit',getData)
 
 function getData(e) {
   e.preventDefault()
 
   let loading = true;
-    if(loading){ div.innerHTML = `
+  if(loading){ div.innerHTML = `
       <img src='./loading.gif' class="loading"/>
  `}
 
   const searchValue = formInput.value;
-  console.log('searchvalue ', searchValue); 
+
   setTimeout(()=>{
     fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${searchValue}`)
     .then((resp) => resp.json())
     .then((data) => {
+      if(data.meals == null) {
+        h1.innerHTML = `${searchValue} NOT FOUND`
+        div.innerHTML = ''
+      }
         loading = false;
-     const meals = data.meals.map((value) => {
+        const meals = data.meals.map((value) => {
         const {
           idMeal: id,
           strMeal: meal,
@@ -35,9 +38,7 @@ function getData(e) {
       showData(meals)
     })
     .catch((error) => {
-      console.log(error)
-      h1.innerHTML = `${searchValue} NOT FOUND`
-      div.innerHTML = ''
+
 
     });
   }, 2000)
@@ -46,6 +47,7 @@ function getData(e) {
 
 function showData(meals) {
  //show data to the ui 
+ h1.innerHTML = "Latest Meals";
  div.innerHTML = '';
   meals.forEach(meal =>  {
     const mealContainer = createMealContainer(meal); 
@@ -66,12 +68,9 @@ function createMealContainer({id,meal,category,instructions,image}){
     <p> <span>Category: </span> ${category}</p>
   </div>
   `
-
   // <p class="instructions">${instructions}</p>
 
   return container;
-  
-
 
 }
 
